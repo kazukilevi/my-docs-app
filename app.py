@@ -90,10 +90,8 @@ if st.button("検索を実行する", type="primary"):
     elif not groups:
         st.warning("検索条件を入力してください。")
     else:
-        # ステータス表示用のエリア
         status_area = st.empty()
         total_hits_area = st.empty()
-        # 結果を次々追加していくためのコンテナ
         results_container = st.container()
         
         total_hits_count = 0
@@ -105,14 +103,13 @@ if st.button("検索を実行する", type="primary"):
             hits = search_text_grouped(text, groups, not_keys, para_chk)
             total_hits_count += len(hits)
             
-            # ヒットがあった場合のみ結果を表示
             if hits:
                 with results_container:
-                    with st.expander(f"📘 {title} ({len(hits)}件ヒット)", expanded=True):
+                    # ここで expanded=False にすることで、最初は閉じた状態になります
+                    with st.expander(f"📘 {title} ({len(hits)}件ヒット)", expanded=False):
                         for h in hits:
                             st.info(h)
             
-            # 総ヒット数をリアルタイム更新
             total_hits_area.subheader(f"現在の総ヒット数: {total_hits_count} 件")
 
         status_area.success(f"✅ すべてのドキュメント（{len(doc_ids)}個）の検索が完了しました！")
