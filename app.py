@@ -10,7 +10,6 @@ st.set_page_config(page_title="Google Docs一括検索", layout="wide")
 # --- 秘密鍵の安全な読み込み ---
 @st.cache_resource
 def get_docs_service():
-    # Streamlit Cloudの"Secrets"設定から読み込む
     try:
         info = st.secrets["gcp_service_account"]
         creds = service_account.Credentials.from_service_account_info(
@@ -41,7 +40,6 @@ def normalize_for_search(s: str) -> str:
     return unicodedata.normalize("NFKC", s).casefold()
 
 def search_text_grouped(text, groups, not_keys, within_para):
-    # 段落分割
     paras_orig = [p.strip() for p in text.split("\n\n") if p.strip()] if within_para else [text]
     paras_norm = [normalize_for_search(p) for p in paras_orig]
     
@@ -58,11 +56,8 @@ def search_text_grouped(text, groups, not_keys, within_para):
 # --- 画面レイアウト ---
 st.title("🔎 Google Docs 一括検索")
 
-# サイドバーにデフォルトURLを設定
 with st.sidebar:
     st.header("1. ドキュメント設定")
-    
-    # Colabで使用していたデフォルトのURLリスト
     DEFAULT_DOCS = """https://docs.google.com/document/d/1_FbN2fK4A8cMp7j9R8Nm9hKi_f_Cwe9pFq0TYzJPo6A/edit
 https://docs.google.com/document/d/1w2U2T6DXpTo0xRqNMVFG3TdNIkuCHfvBsRxGclOEUcU/edit
 https://docs.google.com/document/d/1ApYsSIm91UFOjPKz3EG2mG6vBh9xaln9rGsompRgruk/edit
@@ -86,37 +81,38 @@ with col2:
     not_input = st.text_input("除外キーワード（NOT）")
 
 if st.button("検索を実行する", type="primary"):
-    # URLからIDを抽出
     doc_ids = [d.split("/d/")[1].split("/")[0] for d in re.split(r"[\s,]+", docs_raw.strip()) if "/d/" in d]
     groups = [g.split() for g in groups_input.splitlines() if g.strip()]
     not_keys = not_input.split()
     
     if not doc_ids:
-        st.error("有効なドキュメントURLが見つかりません。左側のサイドバーを確認してください。")
+        st.error("有効なドキュメントURLが見つかりません。")
     elif not groups:
         st.warning("検索条件を入力してください。")
     else:
-        results = []
-        progress_text = "ドキュメントを読み込み中..."
-        my_bar = st.progress(0, text=progress_text)
+        # ステータス表示用のエリア
+        status_area = st.empty()
+        total_hits_area = st.empty()
+        # 結果を次々追加していくためのコンテナ
+        results_container = st.container()
+        
+        total_hits_count = 0
         
         for i, did in enumerate(doc_ids):
+            status_area.write(f"⏳ 検索中 ({i+1}/{len(doc_ids)}): {did}...")
+            
             title, text = get_doc_content(did)
             hits = search_text_grouped(text, groups, not_keys, para_chk)
-            results.append({"title": title, "hits": hits})
-            # 進捗バーの更新
-            my_bar.progress((i + 1) / len(doc_ids), text=f"読み込み中: {title}")
-
-        st.success(f"検索完了！ 総ヒット数: {sum(len(r['hits']) for r in results)}件")
-        
-        # 結果表示（タブ）
-        if results:
-            tabs = st.tabs([f"{r['title'][:8]}...({len(r['hits'])})" for r in results])
-            for i, tab in enumerate(tabs):
-                with tab:
-                    st.subheader(results[i]['title'])
-                    if results[i]['hits']:
-                        for h in results[i]['hits']:
+            total_hits_count += len(hits)
+            
+            # ヒットがあった場合のみ結果を表示
+            if hits:
+                with results_container:
+                    with st.expander(f"📘 {title} ({len(hits)}件ヒット)", expanded=True):
+                        for h in hits:
                             st.info(h)
-                    else:
-                        st.write("該当する箇所はありませんでした。")
+            
+            # 総ヒット数をリアルタイム更新
+            total_hits_area.subheader(f"現在の総ヒット数: {total_hits_count} 件")
+
+        status_area.success(f"✅ すべてのドキュメント（{len(doc_ids)}個）の検索が完了しました！")
