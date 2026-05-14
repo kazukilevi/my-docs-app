@@ -67,7 +67,7 @@ https://docs.google.com/document/d/1p0QNDVahSWo5MZg7FJ3Yq5O9A62EqvW04TplapL5lAM/
 https://docs.google.com/document/d/1q5ga4m-_yeE9b1IgdQIWiSgnAjX5O4mLDx5ZgUm5yOk/edit
 https://docs.google.com/document/d/1YqXPaL8P1_Do_kFSwZzgwtLbdqiiVtgX_8jdm-H6m6Q/edit
 https://docs.google.com/document/d/1Oe1OECA3dYqv8HKz8FPn6iovTxcDuf-P-6pI_gmJz0c/edit
-https://docs.google.com/document/d/117jZR9z_DJMKfONe2g7O-_puVAeMvZFh-GDIgJ_Fiko/edit
+https://docs.google.com/document/d/119islZcd8d_4v0lGBHenP8tkeqe9PbbKnTyQroankCA/edit
 https://docs.google.com/document/d/1H1NflE8NPahqUvdpr2NezEHLgpJ9z0hFQ-P7gwAVyHc/edit"""
 
     docs_raw = st.text_area("対象URL（複数可）", value=DEFAULT_DOCS, height=400)
