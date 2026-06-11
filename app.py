@@ -58,8 +58,7 @@ st.title("🔎 Google Docs 一括検索")
 
 with st.sidebar:
     st.header("1. ドキュメント設定")
-    DEFAULT_DOCS = """https://docs.google.com/document/d/1_FbN2fK4A8cMp7j9R8Nm9hKi_f_Cwe9pFq0TYzJPo6A/edit
-https://docs.google.com/document/d/1w2U2T6DXpTo0xRqNMVFG3TdNIkuCHfvBsRxGclOEUcU/edit
+    DEFAULT_DOCS = """https://docs.google.com/document/d/1w2U2T6DXpTo0xRqNMVFG3TdNIkuCHfvBsRxGclOEUcU/edit
 https://docs.google.com/document/d/1ApYsSIm91UFOjPKz3EG2mG6vBh9xaln9rGsompRgruk/edit
 https://docs.google.com/document/d/1-aL1wvDxQ7ZS6xf_cCM4XpSvvPG7iQcYCc0eEoJ0e9w/edit
 https://docs.google.com/document/d/1hYrfVLTPiq0aHH1EacLl8yIrGY1MkLLeClwPjsl_m8U/edit
@@ -67,7 +66,7 @@ https://docs.google.com/document/d/1p0QNDVahSWo5MZg7FJ3Yq5O9A62EqvW04TplapL5lAM/
 https://docs.google.com/document/d/1q5ga4m-_yeE9b1IgdQIWiSgnAjX5O4mLDx5ZgUm5yOk/edit
 https://docs.google.com/document/d/1YqXPaL8P1_Do_kFSwZzgwtLbdqiiVtgX_8jdm-H6m6Q/edit
 https://docs.google.com/document/d/1Oe1OECA3dYqv8HKz8FPn6iovTxcDuf-P-6pI_gmJz0c/edit
-https://docs.google.com/document/d/119islZcd8d_4v0lGBHenP8tkeqe9PbbKnTyQroankCA/edit
+https://docs.google.com/document/d/1JXg7vjrgunIXL4ZCAKkaMWvw8POxexWRokHCxhE9GAE/edit
 https://docs.google.com/document/d/1H1NflE8NPahqUvdpr2NezEHLgpJ9z0hFQ-P7gwAVyHc/edit"""
 
     docs_raw = st.text_area("対象URL（複数可）", value=DEFAULT_DOCS, height=400)
