@@ -58,7 +58,7 @@ st.title("🔎 Google Docs 一括検索")
 
 with st.sidebar:
     st.header("1. ドキュメント設定")
-    DEFAULT_DOCS = """https://docs.google.com/document/d/1eTsOjeBNdmmnLOEwX-QR2BmWrkdyetE_HrG6GWnu_Jk/edit
+    DEFAULT_DOCS = """https://docs.google.com/document/d/1i5_EAkkvJO8azk2P-C1AnPqBnsOj_RBWpHpZT0kxpqs/edit
 https://docs.google.com/document/d/1ApYsSIm91UFOjPKz3EG2mG6vBh9xaln9rGsompRgruk/edit
 https://docs.google.com/document/d/1-aL1wvDxQ7ZS6xf_cCM4XpSvvPG7iQcYCc0eEoJ0e9w/edit
 https://docs.google.com/document/d/1hYrfVLTPiq0aHH1EacLl8yIrGY1MkLLeClwPjsl_m8U/edit
