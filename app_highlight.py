@@ -126,11 +126,11 @@ https://docs.google.com/document/d/1ApYsSIm91UFOjPKz3EG2mG6vBh9xaln9rGsompRgruk/
 https://docs.google.com/document/d/1-aL1wvDxQ7ZS6xf_cCM4XpSvvPG7iQcYCc0eEoJ0e9w/edit
 https://docs.google.com/document/d/1hYrfVLTPiq0aHH1EacLl8yIrGY1MkLLeClwPjsl_m8U/edit
 https://docs.google.com/document/d/1p0QNDVahSWo5MZg7FJ3Yq5O9A62EqvW04TplapL5lAM/edit
-https://docs.google.com/document/d/1q5ga4m-_yeE9b1IgdQIWiSgnAjX5O4mLDx5ZgUm5yOk/edit
+https://docs.google.com/document/d/1IGRZu-ZhLOIX866bzGNRVycB01_atM8u8Le43H-PLAU/edit
 https://docs.google.com/document/d/1YqXPaL8P1_Do_kFSwZzgwtLbdqiiVtgX_8jdm-H6m6Q/edit
 https://docs.google.com/document/d/1Oe1OECA3dYqv8HKz8FPn6iovTxcDuf-P-6pI_gmJz0c/edit
-https://docs.google.com/document/d/1nIx6WcRietyTpCaeZrS1ag93mi1gl2UoWbBLLtVFipw/edit
-https://docs.google.com/document/d/1H1NflE8NPahqUvdpr2NezEHLgpJ9z0hFQ-P7gwAVyHc/edit"""
+https://docs.google.com/document/d/1ioaG3PQjcK30IQeozyKO85V7pJScw5O_gLRZfEixch4/edit
+https://docs.google.com/document/d/12b_N_nyRlmnXqqXnBToe62N3i2ruZugdh5a3U5VuOMU/edit"""
 
     docs_raw = st.text_area("対象URL（複数可）", value=DEFAULT_DOCS, height=400)
     para_chk = st.checkbox("段落単位で検索する", value=True)
